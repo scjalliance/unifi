@@ -2,7 +2,7 @@ FROM java:jre
 MAINTAINER Dusty Wilson <dusty@linux.com>
 
 ENV DEBIAN_FRONTEND noninteractive
-VOLUME ["/var/lib/unifi"]
+VOLUME ["/var/lib/unifi", "/var/log/unifi", "/var/run/unifi", "/usr/lib/unifi/work"]
 
 # 3478/udp STUN
 # 8080/tcp inform from APs (HTTP)
