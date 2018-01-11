@@ -1,4 +1,4 @@
-FROM java:jre
+FROM java:8-jre
 MAINTAINER Dusty Wilson <dusty@linux.com>
 
 ENV DEBIAN_FRONTEND noninteractive
@@ -13,12 +13,12 @@ VOLUME ["/var/lib/unifi", "/var/log/unifi", "/var/run/unifi", "/usr/lib/unifi/da
 EXPOSE 3478/udp 8080/tcp 8443/tcp 8880/tcp 8843/tcp 27117/tcp
 
 # Setup MongoDB
-RUN apt-key adv --keyserver keyserver.ubuntu.com --recv 7F0CEB10
-RUN echo "deb http://downloads-distro.mongodb.org/repo/debian-sysvinit dist 10gen" > /etc/apt/sources.list.d/mongodb.list
+RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 2930ADAE8CAF5059EE73BB4B58712A2291FA4AD5
+RUN echo "deb http://repo.mongodb.org/apt/debian jessie/mongodb-org/3.6 main" > /etc/apt/sources.list.d/mongodb-org-3.6.list
 
 # Setup UniFi
-RUN apt-key adv --keyserver keyserver.ubuntu.com --recv C0A52C50
-RUN echo "deb http://www.ubnt.com/downloads/unifi/debian unifi4 ubiquiti" > /etc/apt/sources.list.d/unifi.list
+RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 06E85760C0A52C50
+RUN echo "deb http://www.ubnt.com/downloads/unifi/debian stable ubiquiti" > /etc/apt/sources.list.d/100-ubnt-unifi.list
 
 # Install
 RUN apt-get update \
